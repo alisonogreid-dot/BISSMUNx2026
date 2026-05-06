@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUN 2026 – Delegate Preparation Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2a44;
+    --navy-mid: #1b3a5c;
+    --slate: #2d4a6a;
+    --sky: #4a90c4;
+    --ice: #d6e8f5;
+    --ice-light: #eaf3fa;
+    --cream: #faf8f5;
+    --warm: #f5efe8;
+    --gold: #c8982c;
+    --gold-light: #f5ecd4;
+    --crimson: #a8324a;
+    --crimson-light: #f5e0e6;
+    --teal: #2d7a8a;
+    --teal-light: #d8ecef;
+    --plum: #6b3d7a;
+    --plum-light: #ebe0f0;
+    --text: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #7a7a7a;
+    --success: #2d8a56;
+    --success-bg: #e8f5ee;
+    --border: #ddd;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* Header */
+  .site-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(74,144,196,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(200,152,44,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .site-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3rem;
+    position: relative;
+  }
+  .site-header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    font-weight: 400;
+    position: relative;
+  }
+  .site-header .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+
+  /* Top-level Navigation */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: white;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 1rem 1.25rem;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .tab-btn:hover { color: var(--navy); }
+  .tab-btn.active {
+    color: var(--navy);
+  }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--sky);
+    border-radius: 3px 3px 0 0;
+  }
+  .tab-btn .tab-meta {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+  }
+  .tab-btn.active .tab-meta { color: var(--sky); }
+
+  /* Main content */
+  .main { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Committee header banner */
+  .committee-banner {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--sky);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .committee-banner.ga { border-left-color: var(--sky); }
+  .committee-banner.ecosoc { border-left-color: var(--teal); }
+  .committee-banner.special { border-left-color: var(--plum); }
+  .committee-banner .committee-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    margin-bottom: 0.4rem;
+  }
+  .committee-banner h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .committee-banner .topic {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  .committee-banner .topic-summary {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* Section headers */
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin: 2.25rem 0 0.5rem;
+  }
+  .section-title:first-of-type { margin-top: 1rem; }
+  .section-desc {
+    color: var(--text-mid);
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  /* Link lists */
+  .link-group {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+  .link-group-header {
+    background: var(--ice-light);
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border);
+  }
+  .link-item {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1.25rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.88rem;
+    gap: 0.75rem;
+  }
+  .link-item:last-child { border-bottom: none; }
+  .link-item .icon { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
+  .link-item a {
+    color: var(--sky);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .link-item a:hover { text-decoration: underline; }
+  .link-item .tag {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .tag-treaty { background: var(--gold-light); color: var(--gold); }
+  .tag-resolution { background: var(--ice); color: var(--sky); }
+  .tag-org { background: var(--success-bg); color: var(--success); }
+  .tag-tool { background: #f0e8f5; color: #7a4aad; }
+  .tag-report { background: var(--crimson-light); color: var(--crimson); }
+
+  /* Country cards */
+  .country-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .country-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .country-card-header {
+    background: var(--navy);
+    color: white;
+    padding: 0.65rem 0.9rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  .country-card-header.ga { background: var(--navy); }
+  .country-card-header.ecosoc { background: var(--teal); }
+  .country-card-header.special { background: var(--plum); }
+  .country-card-header .toggle-icon {
+    margin-left: auto;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    transition: transform 0.2s;
+  }
+  .country-card.open .toggle-icon { transform: rotate(180deg); }
+  .country-card-body {
+    display: none;
+    padding: 0.85rem 0.95rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+  .country-card.open .country-card-body { display: block; }
+  .country-card-body .official-name {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .position-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.4rem;
+    margin-right: 0.3rem;
+  }
+  .pos-tier1 { background: var(--success-bg); color: var(--success); }
+  .pos-tier2 { background: var(--gold-light); color: var(--gold); }
+  .pos-tier3 { background: var(--crimson-light); color: var(--crimson); }
+  .pos-supportive { background: var(--success-bg); color: var(--success); }
+  .pos-skeptical { background: var(--gold-light); color: var(--gold); }
+  .pos-opposed { background: var(--crimson-light); color: var(--crimson); }
+  .pos-affected { background: #ede2dc; color: #8a4a2d; }
+  .pos-neutral { background: var(--ice); color: var(--sky); }
+
+  .country-card-body .position-summary {
+    margin: 0.4rem 0 0.6rem;
+  }
+  .country-card-body .guiding-q {
+    background: var(--ice-light);
+    border-radius: 4px;
+    padding: 0.55rem 0.7rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .guiding-q strong { color: var(--navy); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .country-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 640px) { .country-list-grid { grid-template-columns: 1fr; } }
+
+  /* Difficulty legend */
+  .difficulty-legend {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.82rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .difficulty-legend .legend-label {
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+  .difficulty-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .difficulty-legend .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+  }
+
+  /* Note callout */
+  .placeholder-note {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    padding: 0.85rem 1.1rem;
+    font-size: 0.88rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 6px 6px 0;
+    color: var(--text-mid);
+  }
+  .placeholder-note strong { color: var(--navy); }
+
+  /* Checklist */
+  .checklist {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .checklist-header {
+    background: var(--navy);
+    color: white;
+    padding: 0.85rem 1.25rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .checklist-header .week-tag {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .checklist-header.priority-high { background: var(--crimson); }
+  .checklist-header.priority-medium { background: var(--navy); }
+  .checklist-header.priority-low { background: var(--slate); }
+  .checklist-header.priority-high .week-tag { background: white; color: var(--crimson); }
+  .checklist-header.priority-medium .week-tag { background: var(--gold); color: var(--navy); }
+  .checklist-header.priority-low .week-tag { background: var(--ice); color: var(--navy); }
+  .timeline-callout {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--sky);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+  .timeline-callout strong { color: var(--navy); }
+  .timeline-callout .timeline-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .check-item:hover { background: var(--ice-light); }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] {
+    margin-top: 0.2rem;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--sky);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .check-item label { cursor: pointer; flex: 1; }
+  .check-label-main {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    display: block;
+  }
+  .check-label-sub {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    display: block;
+    margin-top: 0.15rem;
+  }
+  .check-item.checked .check-label-main {
+    text-decoration: line-through;
+    color: var(--text-light);
+  }
+
+  /* Topic background block */
+  .topic-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .topic-block h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .topic-block h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sky);
+    margin: 1rem 0 0.4rem;
+    font-weight: 700;
+  }
+  .topic-block p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 0.5rem;
+  }
+  .topic-block ul {
+    padding-left: 1.25rem;
+    margin: 0.4rem 0;
+  }
+  .topic-block li {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    margin-bottom: 0.3rem;
+  }
+
+  /* Other delegations in the room */
+  .other-delegations {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .other-delegations-intro {
+    background: var(--warm);
+    padding: 0.85rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    border-bottom: 1px solid var(--border);
+    margin: -0.5rem 0 0;
+  }
+  .other-delegations-intro strong { color: var(--navy); }
+  .other-row {
+    display: grid;
+    grid-template-columns: 140px 90px 1fr;
+    gap: 1rem;
+    padding: 0.55rem 1.25rem;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 0.83rem;
+    align-items: baseline;
+  }
+  .other-row:last-child { border-bottom: none; }
+  .other-row .other-name {
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .other-row .other-bloc {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    text-align: center;
+    height: fit-content;
+  }
+  .bloc-western { background: var(--ice); color: var(--sky); }
+  .bloc-aligned { background: var(--gold-light); color: var(--gold); }
+  .bloc-opposed { background: var(--crimson-light); color: var(--crimson); }
+  .bloc-nonaligned { background: var(--success-bg); color: var(--success); }
+  .bloc-affected { background: #ede2dc; color: #8a4a2d; }
+  .bloc-observer { background: #ede8f5; color: #6b3d7a; }
+  .other-row .other-note {
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  @media (max-width: 640px) {
+    .other-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+      padding: 0.7rem 1rem;
+    }
+    .other-row .other-bloc { justify-self: start; }
+  }
+
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+  .site-footer a { color: var(--sky); text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .site-header h1 { font-size: 1.8rem; }
+    .tab-btn { padding: 0.7rem 0.6rem; font-size: 0.78rem; }
+    .tab-btn .tab-meta { font-size: 0.55rem; }
+    .committee-banner { padding: 1.1rem 1.1rem; }
+    .committee-banner h2 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="badge">Delegate Preparation Portal</div>
+  <h1>Model UN 2026</h1>
+  <p class="subtitle">Three Committees &mdash; Three Topics &mdash; One Conference</p>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="ga"><span class="tab-meta">Committee</span>General Assembly</button>
+  <button class="tab-btn" data-tab="ecosoc"><span class="tab-meta">Committee</span>ECOSOC</button>
+  <button class="tab-btn" data-tab="special"><span class="tab-meta">Committee</span>Special Committee</button>
+  <button class="tab-btn" data-tab="resources"><span class="tab-meta">Shared</span>Resources &amp; Checklist</button>
+</nav>
+
+<main class="main">
+
+  <!-- ==================== GA TAB ==================== -->
+  <div id="ga" class="tab-content active">
+
+    <div class="committee-banner ga">
+      <div class="committee-eyebrow">Committee 1 &middot; 15 Delegations</div>
+      <h2>General Assembly</h2>
+      <p class="topic">Strengthening accountability for war crimes</p>
+      <p class="topic-summary">The GA is debating how the international community can strengthen mechanisms to investigate, prosecute, and deter war crimes. Expect debate on the International Criminal Court (ICC), universal jurisdiction, ad-hoc tribunals, and the tension between accountability and national sovereignty. The committee fractures along clear lines: ICC champions, ICC skeptics, and states that have themselves been accused of war crimes.</p>
+    </div>
+
+    <h3 class="section-title">Topic Background</h3>
+    <div class="topic-block">
+      <h4>Why this topic, why now</h4>
+      <p>War crimes accountability has resurfaced as one of the most contested debates at the UN. The ICC&rsquo;s 2023 arrest warrant against President Putin, ongoing investigations into Israel/Palestine, and the Rohingya, Sudan, Syria, and Yemen conflicts have reignited fundamental questions: Who has the authority to prosecute war crimes? When does accountability serve justice, and when does it risk politicisation? Should sovereign immunity protect heads of state?</p>
+      <h4>Key tensions</h4>
+      <ul>
+        <li><strong>Universal jurisdiction vs. sovereignty:</strong> Can national courts prosecute crimes committed in other countries?</li>
+        <li><strong>ICC legitimacy:</strong> Critics argue the Court disproportionately targets African and non-Western leaders.</li>
+        <li><strong>Selective enforcement:</strong> Why are some conflicts investigated while others are not?</li>
+        <li><strong>Funding and cooperation:</strong> The ICC depends on member-state cooperation to make arrests &mdash; what happens when states refuse?</li>
+        <li><strong>Alternative mechanisms:</strong> Hybrid tribunals, truth commissions, and transitional justice as ICC alternatives.</li>
+      </ul>
+    </div>
+
+    <h3 class="section-title">Delegations</h3>
+    <p class="section-desc">Click any country to expand its position summary and research starting points. The stakes label gives a sense of how much balancing the position requires &mdash; not how &ldquo;hard&rdquo; the country is. Every delegation can shine with good preparation.</p>
+
+    <div class="difficulty-legend">
+      <span class="legend-label">Stakes:</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--success-bg);border:1px solid var(--success);"></span>Low stakes &mdash; clear position, gentle entry</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--gold-light);border:1px solid var(--gold);"></span>Medium stakes &mdash; some balancing required</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--crimson-light);border:1px solid var(--crimson);"></span>High stakes &mdash; complex position, more prep needed</span>
+    </div>
+
+    <div class="country-list-grid" id="gaCountries"></div>
+
+    <h3 class="section-title">Others in the Room</h3>
+    <p class="section-desc">These delegations are also represented in the GA but not by your school. Knowing who else is on the floor helps you plan blocs, anticipate pushback, and identify natural co-sponsors. Notes here are <em>likely</em> positions &mdash; verify before relying on them.</p>
+
+    <div class="other-delegations">
+      <div class="other-delegations-intro">
+        <strong>How to use this:</strong> Find your country&rsquo;s likely allies, then look at who&rsquo;ll oppose you. The bloc tags are quick guides &mdash; many countries don&rsquo;t fit neatly into one camp, especially on this topic.
+      </div>
+      <div class="other-row"><span class="other-name">Algeria</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Sovereignty-first framing, sceptical of ICC. Will likely align with China/Russia/Iran on non-interference. Strong on Palestine accountability.</span></div>
+      <div class="other-row"><span class="other-name">Belarus</span><span class="other-bloc bloc-opposed">Russia-aligned</span><span class="other-note">Reliable Russia ally. Will oppose ICC mechanisms, especially the Putin warrant. Itself sanctioned by Western states.</span></div>
+      <div class="other-row"><span class="other-name">Egypt</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Not an ICC member. Cautious on accountability mechanisms that could apply domestically. Often a bridge in Arab League positions.</span></div>
+      <div class="other-row"><span class="other-name">Germany</span><span class="other-bloc bloc-western">Western</span><span class="other-note">Major ICC funder. Strong universal jurisdiction record (prosecuting Syrian war criminals in German courts). Natural ally for Netherlands, Canada, Norway.</span></div>
+      <div class="other-row"><span class="other-name">Israel</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Not an ICC member; ICC arrest warrants issued for Israeli officials in 2024. Will reject ICC jurisdiction. Difficult position to defend in current climate.</span></div>
+      <div class="other-row"><span class="other-name">Mongolia</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">ICC State Party but caught between Russia and China. Hosted Putin in 2024 despite ICC warrant &mdash; awkward precedent. Quiet voice.</span></div>
+      <div class="other-row"><span class="other-name">Palestine</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Acceded to the Rome Statute in 2015. Strong advocate for ICC investigations into the Israeli-Palestinian situation. Observer state.</span></div>
+      <div class="other-row"><span class="other-name">Philippines</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Withdrew from the ICC in 2019 under Duterte; current government has shown openness to cooperation. Position depends on framing.</span></div>
+      <div class="other-row"><span class="other-name">Qatar</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Not an ICC member. Active mediator in Israel-Palestine talks. Cautious accountability stance, prefers diplomatic over judicial mechanisms.</span></div>
+      <div class="other-row"><span class="other-name">Russia</span><span class="other-bloc bloc-opposed">Opposed</span><span class="other-note">Withdrew Rome Statute signature in 2016. ICC arrest warrant against Putin (2023). Will be hostile to all ICC-strengthening proposals. P5 member.</span></div>
+      <div class="other-row"><span class="other-name">Saudi Arabia</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Not an ICC member. Sovereignty-focused, wary of accountability mechanisms applied to allies. Itself implicated in Yemen war crimes investigations.</span></div>
+      <div class="other-row"><span class="other-name">Somalia</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Active conflict zone with ongoing al-Shabaab insurgency. ICC State Party. Likely supportive but capacity-limited; emphasises state-building.</span></div>
+      <div class="other-row"><span class="other-name">Syria</span><span class="other-bloc bloc-opposed">Russia-aligned</span><span class="other-note">Not an ICC member. Government accused of war crimes; subject of the IIIM mechanism. Will reject all ICC mechanisms as politicised.</span></div>
+      <div class="other-row"><span class="other-name">T&uuml;rkiye</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Not an ICC member. NATO ally but increasingly independent. Active on Palestine accountability, cautious on its own Kurdish operations.</span></div>
+      <div class="other-row"><span class="other-name">UAE</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Not an ICC member. Gulf state with growing diplomatic role. Yemen-coalition involvement creates sensitivity to accountability framings.</span></div>
+      <div class="other-row"><span class="other-name">Ukraine</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Accepted ICC jurisdiction in 2014; full ratification 2024. Major beneficiary of ICC&rsquo;s Russia investigation. Strong accountability advocate.</span></div>
+      <div class="other-row"><span class="other-name">United Kingdom</span><span class="other-bloc bloc-western">Western, P5</span><span class="other-note">ICC State Party. Strong on accountability rhetoric, but balances with strategic interests. Major funder of investigative mechanisms.</span></div>
+      <div class="other-row"><span class="other-name">United States</span><span class="other-bloc bloc-western">Western, P5</span><span class="other-note">Not an ICC member; sanctioned ICC officials in 2020 and 2025. Selective support &mdash; backs ICC investigation of Russia but rejects investigations of US/Israel. Complex position.</span></div>
+      <div class="other-row"><span class="other-name">ICC</span><span class="other-bloc bloc-observer">Observer</span><span class="other-note">The Court itself, present as observer. Will provide procedural input but not vote. Useful resource for delegates seeking institutional accuracy.</span></div>
+      <div class="other-row"><span class="other-name">NATO</span><span class="other-bloc bloc-observer">Observer</span><span class="other-note">Intergovernmental military alliance, observer status. Member states have varied ICC positions; NATO itself focuses on collective defence and rules-based order.</span></div>
+      <div class="other-row"><span class="other-name">Interpol</span><span class="other-bloc bloc-observer">Observer</span><span class="other-note">International criminal police organisation. Issues red notices to assist arrest of war crimes suspects. Cannot enforce but supports ICC and national prosecutions.</span></div>
+    </div>
+
+    <h3 class="section-title">Documentation</h3>
+    <p class="section-desc">Treaties, resolutions, and key bodies most relevant to this topic.</p>
+
+    <div class="link-group">
+      <div class="link-group-header">Treaties &amp; Statutes</div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.icc-cpi.int/sites/default/files/RS-Eng.pdf" target="_blank">Rome Statute of the International Criminal Court (1998)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.icrc.org/en/doc/assets/files/publications/icrc-002-0173.pdf" target="_blank">Geneva Conventions (1949) &amp; Additional Protocols</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.un.org/en/genocideprevention/genocide-convention.shtml" target="_blank">Convention on the Prevention and Punishment of the Crime of Genocide (1948)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-against-torture-and-other-cruel-inhuman-or-degrading" target="_blank">Convention Against Torture (CAT, 1984)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.un.org/en/about-us/un-charter/full-text" target="_blank">Charter of the United Nations &mdash; Chapter VII</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">General Assembly Resolutions</div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/A/RES/60/147" target="_blank">A/RES/60/147 (2005)</a> &mdash; Basic Principles on the Right to a Remedy and Reparation</div>
+        <span class="tag tag-resolution">GA Res</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/A/RES/77/247" target="_blank">A/RES/77/247 (2022)</a> &mdash; Cooperation against impunity for international crimes</div>
+        <span class="tag tag-resolution">GA Res</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/A/RES/76/262" target="_blank">A/RES/76/262 (2022)</a> &mdash; Veto Initiative (transparency on SC vetoes)</div>
+        <span class="tag tag-resolution">GA Res</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/A/RES/71/248" target="_blank">A/RES/71/248 (2016)</a> &mdash; IIIM for Syria (International, Impartial and Independent Mechanism)</div>
+        <span class="tag tag-resolution">GA Res</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">Key Bodies &amp; Organisations</div>
+      <div class="link-item">
+        <span class="icon">⚖️</span>
+        <div><a href="https://www.icc-cpi.int" target="_blank">International Criminal Court (ICC)</a></div>
+        <span class="tag tag-org">Court</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">⚖️</span>
+        <div><a href="https://www.icj-cij.org" target="_blank">International Court of Justice (ICJ)</a></div>
+        <span class="tag tag-org">Court</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🏛️</span>
+        <div><a href="https://www.ohchr.org" target="_blank">UN Office of the High Commissioner for Human Rights (OHCHR)</a></div>
+        <span class="tag tag-org">Org</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🏛️</span>
+        <div><a href="https://www.icrc.org" target="_blank">International Committee of the Red Cross (ICRC)</a></div>
+        <span class="tag tag-org">Org</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🏛️</span>
+        <div><a href="https://iiim.un.org" target="_blank">IIIM &mdash; International, Impartial and Independent Mechanism (Syria)</a></div>
+        <span class="tag tag-org">Mechanism</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🏛️</span>
+        <div><a href="https://iiimm.un.org" target="_blank">IIMM &mdash; Independent Investigative Mechanism for Myanmar</a></div>
+        <span class="tag tag-org">Mechanism</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">Reports &amp; Background</div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://asp.icc-cpi.int/states-parties" target="_blank">ICC States Parties &mdash; full list of members and non-members</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.hrw.org/topic/international-justice" target="_blank">Human Rights Watch &mdash; International Justice coverage</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.amnesty.org/en/what-we-do/international-justice/" target="_blank">Amnesty International &mdash; International Justice</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== ECOSOC TAB ==================== -->
+  <div id="ecosoc" class="tab-content">
+
+    <div class="committee-banner ecosoc">
+      <div class="committee-eyebrow">Committee 2 &middot; 8 Delegations</div>
+      <h2>Economic and Social Council</h2>
+      <p class="topic">The strategic weaponisation of maritime trade and borders</p>
+      <p class="topic-summary">ECOSOC is examining the economic and humanitarian consequences when states or non-state actors use maritime chokepoints, shipping routes, and borders as instruments of coercion. Recent flashpoints include Houthi attacks in the Red Sea, Russia&rsquo;s Black Sea blockade, the Strait of Hormuz, the South China Sea, and the rise of &ldquo;shadow fleets&rdquo; evading sanctions. The framing is economic and humanitarian &mdash; not military.</p>
+    </div>
+
+    <h3 class="section-title">Topic Background</h3>
+    <div class="topic-block">
+      <h4>Why this topic, why now</h4>
+      <p>Roughly 80% of global trade by volume travels by sea. When chokepoints are weaponised, the impact is global: insurance premiums spike, supply chains break, food and energy prices rise, and developing countries that depend on imports suffer disproportionately. The Houthi Red Sea attacks since 2023 reduced Suez Canal traffic by over 60%, costing Egypt billions. Russia&rsquo;s Black Sea blockade threatened global food security. Iran&rsquo;s Hormuz threats periodically spike oil prices.</p>
+      <h4>Key tensions</h4>
+      <ul>
+        <li><strong>Freedom of navigation vs. coastal-state authority:</strong> UNCLOS guarantees innocent passage, but coastal states claim security rights.</li>
+        <li><strong>Sanctions enforcement vs. evasion:</strong> Shadow fleets, ship-to-ship transfers, and flag-of-convenience abuse.</li>
+        <li><strong>Chokepoint dependency:</strong> Suez, Hormuz, Bab al-Mandeb, Malacca, Bosporus &mdash; each a single point of failure.</li>
+        <li><strong>Humanitarian consequences:</strong> Food security, especially in import-dependent developing countries.</li>
+        <li><strong>Border weaponisation:</strong> Migration as a tool of pressure (Belarus-EU, etc.).</li>
+      </ul>
+    </div>
+
+    <h3 class="section-title">Delegations</h3>
+    <p class="section-desc">Click any country to expand its position summary and research starting points.</p>
+
+    <div class="difficulty-legend">
+      <span class="legend-label">Stakes:</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--success-bg);border:1px solid var(--success);"></span>Low stakes &mdash; clear position, gentle entry</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--gold-light);border:1px solid var(--gold);"></span>Medium stakes &mdash; some balancing required</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--crimson-light);border:1px solid var(--crimson);"></span>High stakes &mdash; complex position, more prep needed</span>
+    </div>
+
+    <div class="country-list-grid" id="ecosocCountries"></div>
+
+    <h3 class="section-title">Others in the Room</h3>
+    <p class="section-desc">These delegations are also represented in ECOSOC but not by your school. Use this to plan blocs and anticipate counter-arguments.</p>
+
+    <div class="other-delegations">
+      <div class="other-delegations-intro">
+        <strong>How to use this:</strong> ECOSOC tends to fracture along economic interest lines (shipping nations vs. coastal states, importers vs. exporters) more than political ones. Look for who shares your country&rsquo;s economic stake.
+      </div>
+      <div class="other-row"><span class="other-name">Algeria</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Mediterranean coastal state, gas exporter. Concerned about chokepoint disruption affecting energy exports. Sovereignty-focused.</span></div>
+      <div class="other-row"><span class="other-name">Egypt</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Suez Canal sovereignty is central to Egyptian identity and economy. Lost ~$7bn in 2024 to Houthi-driven Red Sea diversions. Major stakeholder.</span></div>
+      <div class="other-row"><span class="other-name">Israel</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Eilat port effectively closed by Houthi attacks in 2024. Strong on freedom of navigation, supports Operation Prosperity Guardian.</span></div>
+      <div class="other-row"><span class="other-name">Mongolia</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Landlocked &mdash; advocates for landlocked-state interests under UNCLOS. Dependent on Chinese and Russian transit routes.</span></div>
+      <div class="other-row"><span class="other-name">Philippines</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">South China Sea front-line state. Strong supporter of UNCLOS and the 2016 arbitration ruling against China. Major maritime interests.</span></div>
+      <div class="other-row"><span class="other-name">Qatar</span><span class="other-bloc bloc-nonaligned">Non-aligned</span><span class="other-note">Major LNG exporter dependent on Strait of Hormuz. Mediation role gives it voice on de-escalation. Cautious framing.</span></div>
+      <div class="other-row"><span class="other-name">Russia</span><span class="other-bloc bloc-opposed">Accused actor</span><span class="other-note">Black Sea blockade of Ukrainian grain made Russia a central case study of weaponisation. Operates the world&rsquo;s largest shadow fleet for sanctions evasion. Hostile environment.</span></div>
+      <div class="other-row"><span class="other-name">Saudi Arabia</span><span class="other-bloc bloc-nonaligned">Coalition lead</span><span class="other-note">Red Sea coastal state, leads the anti-Houthi coalition in Yemen. Major oil exporter through Hormuz. Active stakeholder in chokepoint security.</span></div>
+      <div class="other-row"><span class="other-name">Syria</span><span class="other-bloc bloc-opposed">Russia-aligned</span><span class="other-note">Eastern Mediterranean coastline includes Russian naval base at Tartus. Will align with Russia and Iran on framing.</span></div>
+      <div class="other-row"><span class="other-name">T&uuml;rkiye</span><span class="other-bloc bloc-aligned">Pivotal</span><span class="other-note">Controls the Bosporus and Dardanelles under the Montreux Convention. Brokered the Black Sea Grain Initiative (2022&ndash;2023). Major maritime authority.</span></div>
+      <div class="other-row"><span class="other-name">UAE</span><span class="other-bloc bloc-aligned">Hub state</span><span class="other-note">Major shipping hub (Jebel Ali, DP World globally). Strong freedom-of-navigation position, engaged in Red Sea security operations.</span></div>
+      <div class="other-row"><span class="other-name">Ukraine</span><span class="other-bloc bloc-affected">Affected</span><span class="other-note">Direct victim of weaponised maritime blockade. Strongest possible position on chokepoint protection and Black Sea freedom of navigation.</span></div>
+      <div class="other-row"><span class="other-name">United Kingdom</span><span class="other-bloc bloc-western">Western, P5</span><span class="other-note">Major naval power, leads with US in Red Sea operations (Operation Prosperity Guardian). Major shipping insurance hub (Lloyd&rsquo;s of London).</span></div>
+      <div class="other-row"><span class="other-name">United States</span><span class="other-bloc bloc-western">Western, P5</span><span class="other-note">5th Fleet in Bahrain, leads Combined Task Force 153. Sanctions enforcement architect. Will push for stronger response to weaponisation.</span></div>
+    </div>
+
+    <h3 class="section-title">Documentation</h3>
+    <p class="section-desc">Treaties, resolutions, and key bodies most relevant to this topic.</p>
+
+    <div class="link-group">
+      <div class="link-group-header">Treaties &amp; Conventions</div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.un.org/depts/los/convention_agreements/texts/unclos/unclos_e.pdf" target="_blank">UN Convention on the Law of the Sea (UNCLOS, 1982)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.imo.org/en/About/Conventions/Pages/Convention-for-the-Suppression-of-Unlawful-Acts-Against-the-Safety-of-Maritime-Navigation.aspx" target="_blank">SUA Convention (1988) &mdash; Maritime Safety</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.imo.org/en/About/Conventions/Pages/International-Convention-for-the-Safety-of-Life-at-Sea-(SOLAS),-1974.aspx" target="_blank">SOLAS Convention (1974)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://wits.worldbank.org/GPTAD/PDF/archive/Montreux.pdf" target="_blank">Montreux Convention (1936) &mdash; Turkish Straits</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">UN Resolutions</div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/S/RES/2722(2024)" target="_blank">S/RES/2722 (2024)</a> &mdash; Houthi attacks in the Red Sea</div>
+        <span class="tag tag-resolution">SC Res</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/A/RES/77/248" target="_blank">A/RES/77/248 (2022)</a> &mdash; Black Sea Grain Initiative recognition</div>
+        <span class="tag tag-resolution">GA Res</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🗳️</span>
+        <div><a href="https://undocs.org/S/RES/1816(2008)" target="_blank">S/RES/1816 (2008)</a> &mdash; Counter-piracy off Somalia (precedent)</div>
+        <span class="tag tag-resolution">SC Res</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">Key Organisations</div>
+      <div class="link-item">
+        <span class="icon">🚢</span>
+        <div><a href="https://www.imo.org" target="_blank">International Maritime Organization (IMO)</a></div>
+        <span class="tag tag-org">Org</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📦</span>
+        <div><a href="https://unctad.org/topic/transport-and-trade-logistics" target="_blank">UNCTAD &mdash; Transport &amp; Trade Logistics</a></div>
+        <span class="tag tag-org">Org</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🌾</span>
+        <div><a href="https://www.wfp.org" target="_blank">World Food Programme (WFP)</a></div>
+        <span class="tag tag-org">Org</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">🏛️</span>
+        <div><a href="https://www.un.org/depts/los/" target="_blank">UN Division for Ocean Affairs and the Law of the Sea</a></div>
+        <span class="tag tag-org">Org</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">Current Reports &amp; Data</div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://unctad.org/rmt2024" target="_blank">UNCTAD Review of Maritime Transport (annual)</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.imo.org/en/MediaCentre/HotTopics/Pages/MSCHOA.aspx" target="_blank">IMO Maritime Security &mdash; Red Sea, Gulf of Aden</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.csis.org/topics/maritime-issues" target="_blank">CSIS Maritime Issues coverage</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== SPECIAL TAB ==================== -->
+  <div id="special" class="tab-content">
+
+    <div class="committee-banner special">
+      <div class="committee-eyebrow">Committee 3 &middot; 5 Delegations</div>
+      <h2>Special Committee</h2>
+      <p class="topic">The question of human rights and ethnic minorities in the Xinjiang region</p>
+      <p class="topic-summary">This is the most politically sensitive topic of the conference. The committee will debate allegations concerning the treatment of Uyghurs, Kazakhs, and other Turkic Muslim minorities in China&rsquo;s Xinjiang Uyghur Autonomous Region. Expect a clear fracture: roughly 50 countries have signed UN letters criticising China&rsquo;s policies, while a larger group has signed letters supporting China&rsquo;s &ldquo;counter-terrorism&rdquo; framing. Approach with care &mdash; the topic touches on credible documented harm.</p>
+    </div>
+
+    <div class="placeholder-note">
+      <strong>Note for delegates:</strong> This topic requires careful, diplomatic handling. Whatever position you represent, your job is to argue it credibly &mdash; not dismiss documented evidence or attack other delegates personally. Allegations include mass detention, forced labour, surveillance, and cultural restrictions; China&rsquo;s framing emphasises counter-terrorism, vocational education, and poverty alleviation. A good delegate engages with the substance, even when the position is uncomfortable.
+    </div>
+
+    <h3 class="section-title">Topic Background</h3>
+    <div class="topic-block">
+      <h4>Why this topic, why now</h4>
+      <p>Since around 2017, credible reports have documented large-scale detention facilities in Xinjiang, alongside expanded surveillance, restrictions on religious and cultural practice, and labour transfer programmes. China characterises its actions as counter-terrorism following violent incidents in the early 2010s, and points to economic development gains. The OHCHR&rsquo;s 2022 assessment found possible &ldquo;crimes against humanity&rdquo;; China rejects the assessment as politicised. The topic now sits at the centre of a broader contest over the international human-rights system.</p>
+      <h4>The dueling letters</h4>
+      <p>In 2019 and again in 2022, two competing groups of states submitted letters to the UN Human Rights Council. Western and allied states criticised China&rsquo;s Xinjiang policies; a larger group &mdash; including most Muslim-majority states, African states, and developing countries &mdash; signed letters supporting China&rsquo;s position. This split is the central diplomatic reality of the debate.</p>
+      <h4>Key tensions</h4>
+      <ul>
+        <li><strong>Sovereignty vs. universal human rights:</strong> When does &ldquo;internal affairs&rdquo; end?</li>
+        <li><strong>Counter-terrorism framing vs. cultural rights:</strong> Are the policies security measures or persecution?</li>
+        <li><strong>Evidence and access:</strong> The OHCHR could not visit independently; satellite imagery, leaked documents, and survivor testimony form much of the public record.</li>
+        <li><strong>Forced labour and global supply chains:</strong> The Uyghur Forced Labour Prevention Act (US) and similar measures have economic consequences.</li>
+        <li><strong>The OIC paradox:</strong> Why have most Muslim-majority states sided with China?</li>
+      </ul>
+    </div>
+
+    <h3 class="section-title">Delegations</h3>
+    <p class="section-desc">Click any country to expand its position summary and research starting points.</p>
+
+    <div class="difficulty-legend">
+      <span class="legend-label">Stakes:</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--success-bg);border:1px solid var(--success);"></span>Low stakes &mdash; clear position, gentle entry</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--gold-light);border:1px solid var(--gold);"></span>Medium stakes &mdash; some balancing required</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--crimson-light);border:1px solid var(--crimson);"></span>High stakes &mdash; complex position, more prep needed</span>
+    </div>
+
+    <div class="country-list-grid" id="specialCountries"></div>
+
+    <h3 class="section-title">Others in the Room</h3>
+    <p class="section-desc">These delegations are also represented in the Special Committee but not by your school. Note the strong split: Western states have generally signed critical letters, while many Muslim-majority and non-aligned states have signed letters supporting China&rsquo;s position.</p>
+
+    <div class="other-delegations">
+      <div class="other-delegations-intro">
+        <strong>How to use this:</strong> Look at the dueling 2019/2022 UN letters &mdash; who signed which? That&rsquo;s the most reliable predictor of how a delegation will vote here.
+      </div>
+      <div class="other-row"><span class="other-name">Algeria</span><span class="other-bloc bloc-aligned">Pro-China letter</span><span class="other-note">Signed letters supporting China&rsquo;s Xinjiang position. Sovereignty/non-interference framing. Will support &ldquo;internal affairs&rdquo; arguments.</span></div>
+      <div class="other-row"><span class="other-name">Mongolia</span><span class="other-bloc bloc-nonaligned">Notably silent</span><span class="other-note">Has not signed either letter despite hosting ethnic Kazakhs and having direct China border. Walks a careful line; quiet voice.</span></div>
+      <div class="other-row"><span class="other-name">Russia</span><span class="other-bloc bloc-aligned">Pro-China letter</span><span class="other-note">Signed multiple letters supporting China. Strong sovereignty framing aligned with own positions on Chechnya. Reliable China ally on this topic.</span></div>
+      <div class="other-row"><span class="other-name">Saudi Arabia</span><span class="other-bloc bloc-aligned">Pro-China letter</span><span class="other-note">Signed pro-China letters despite Muslim-majority population. Counter-terrorism framing aligns with Saudi domestic narrative. Strong ally for China.</span></div>
+      <div class="other-row"><span class="other-name">Syria</span><span class="other-bloc bloc-aligned">Pro-China letter</span><span class="other-note">Signed letters supporting China. Itself a target of human-rights criticism &mdash; reliable ally for sovereignty/anti-Western framing.</span></div>
+      <div class="other-row"><span class="other-name">T&uuml;rkiye</span><span class="other-bloc bloc-nonaligned">Conflicted</span><span class="other-note">Historic Turkic kinship with Uyghurs but increasingly close to China economically. Has criticised China&rsquo;s policies but signed neither joint letter recently. Most genuinely conflicted position in the room.</span></div>
+      <div class="other-row"><span class="other-name">Qatar</span><span class="other-bloc bloc-aligned">Pro-China letter</span><span class="other-note">Signed pro-China letters. Significant Chinese investment ties. Will support sovereignty framing despite Muslim-majority population.</span></div>
+      <div class="other-row"><span class="other-name">UAE</span><span class="other-bloc bloc-aligned">Pro-China letter</span><span class="other-note">Signed pro-China letters. Major Chinese partner via Belt and Road. Counter-terrorism framing fits UAE&rsquo;s own security narrative.</span></div>
+      <div class="other-row"><span class="other-name">United Kingdom</span><span class="other-bloc bloc-western">Critical letters</span><span class="other-note">Signed all critical joint letters. Parliament voted to label situation a genocide (2021). Sanctions on Chinese officials. Strong Western critic.</span></div>
+      <div class="other-row"><span class="other-name">United States</span><span class="other-bloc bloc-western">Critical letters</span><span class="other-note">Formal genocide designation (2021). Uyghur Forced Labour Prevention Act (2021). Sanctions on Chinese officials. Strongest Western voice on this topic.</span></div>
+    </div>
+
+    <h3 class="section-title">Documentation</h3>
+    <p class="section-desc">Treaties, resolutions, and reports most relevant to this topic.</p>
+
+    <div class="link-group">
+      <div class="link-group-header">Core Treaties &amp; Frameworks</div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.un.org/en/about-us/universal-declaration-of-human-rights" target="_blank">Universal Declaration of Human Rights (UDHR, 1948)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/international-convention-elimination-all-forms-racial" target="_blank">ICERD &mdash; Racial Discrimination Convention (1965)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-civil-and-political-rights" target="_blank">ICCPR (1966) &mdash; Civil and Political Rights</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📜</span>
+        <div><a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/declaration-rights-persons-belonging-national-or-ethnic" target="_blank">Declaration on the Rights of Persons Belonging to Minorities (1992)</a></div>
+        <span class="tag tag-treaty">Treaty</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">UN Reports &amp; Statements</div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.ohchr.org/en/documents/country-reports/ohchr-assessment-human-rights-concerns-xinjiang-uyghur-autonomous-region" target="_blank">OHCHR Assessment on Xinjiang (2022)</a></div>
+        <span class="tag tag-report">UN Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://documents.un.org/doc/undoc/gen/g22/527/74/pdf/g2252774.pdf" target="_blank">Joint Letter (49 states) &mdash; concern over Xinjiang (2022)</a></div>
+        <span class="tag tag-report">UN Doc</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.un.org/press/en/2019/gashc4280.doc.htm" target="_blank">Joint Letter (50+ states) &mdash; supporting China&rsquo;s position (2019)</a></div>
+        <span class="tag tag-report">UN Doc</span>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <div class="link-group-header">Independent Reports &amp; Sources</div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.uyghurtribunal.com" target="_blank">Uyghur Tribunal &mdash; Independent People&rsquo;s Tribunal Report (2021)</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.aspi.org.au/report/uyghurs-sale" target="_blank">ASPI &mdash; &ldquo;Uyghurs for Sale&rdquo; report on labour transfers</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="http://www.china.org.cn/government/whitepaper/node_8027346.htm" target="_blank">China State Council White Papers on Xinjiang</a></div>
+        <span class="tag tag-report">Govt Doc</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.hrw.org/asia/china-and-tibet" target="_blank">Human Rights Watch &mdash; China coverage</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+      <div class="link-item">
+        <span class="icon">📊</span>
+        <div><a href="https://www.amnesty.org/en/location/asia-and-the-pacific/east-asia/china/" target="_blank">Amnesty International &mdash; China</a></div>
+        <span class="tag tag-report">Report</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== RESOURCES TAB ==================== -->
+  <div id="resources" class="tab-content">
+
+    <h3 class="section-title">Preparation Checklist</h3>
+    <p class="section-desc">A focused two-week plan. Tap to check off items as you complete them &mdash; progress saves locally to this device. You&rsquo;ve done short-notice prep before; this is about doing the right things, not all the things.</p>
+
+    <div class="timeline-callout">
+      <span class="timeline-title">Two weeks. Three priorities.</span>
+      The <strong>First steps</strong> below are non-negotiable &mdash; finish them this week and you&rsquo;ll walk into committee able to speak and contribute. The <strong>Next steps</strong> turn a competent delegate into a strong one. The <strong>Bonus</strong> list is for delegates with time to spare or harder positions to defend.
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-header priority-high"><span class="week-tag">First steps</span> This week &mdash; the essentials</div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Read the conference background guide</span>
+          <span class="check-label-sub">Available from your committee chair. This is your foundation document &mdash; everything else builds on it.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Open your country&rsquo;s card on this site &mdash; read the position summary and guiding questions</span>
+          <span class="check-label-sub">Also check the &ldquo;Others in the Room&rdquo; section to see who your likely allies and opponents are.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Country basics &mdash; the 5-minute version</span>
+          <span class="check-label-sub">Official name, government type, current head of state, region, key alliances. Don&rsquo;t go deep &mdash; just enough to sound informed.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Topic background &mdash; what is the issue?</span>
+          <span class="check-label-sub">Use the topic background block on your committee tab plus one or two of the linked resources. Aim for: definition, history, who is affected, why it matters now.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Your country&rsquo;s policy on the topic</span>
+          <span class="check-label-sub">Foreign-ministry statements, recent UN votes, key treaties signed or rejected. Two or three solid facts beat a wall of vague text.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Draft your position paper (1&ndash;2 pages)</span>
+          <span class="check-label-sub">Topic background, past international action, country policy, possible solutions. See the sample in your project files.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Write your opening speech (Hook &mdash; Point &mdash; Call to Action)</span>
+          <span class="check-label-sub">60&ndash;90 seconds. Grab attention, state your position, propose action. Practise it out loud at least once.</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-header priority-medium"><span class="week-tag">Next steps</span> Week 2 &mdash; the polish</div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Brainstorm 3&ndash;5 possible solutions</span>
+          <span class="check-label-sub">Realistic, country-aligned ideas you can actually defend. NGO and think-tank reports are good sources.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Draft 2&ndash;3 operative clauses</span>
+          <span class="check-label-sub">Use the SMART framework (see Resolution Writing Quick Reference below). Know who, what, how, and how it&rsquo;s measured.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Identify your bloc &mdash; who&rsquo;s on your side?</span>
+          <span class="check-label-sub">Look at the &ldquo;Others in the Room&rdquo; tags. Pick 2&ndash;3 likely allies and one country you&rsquo;ll need to win over.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Practise your speech a second time</span>
+          <span class="check-label-sub">Time it. Read it to someone. Then put it down and try delivering it from memory.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Anticipate one hard question</span>
+          <span class="check-label-sub">What&rsquo;s the most awkward question someone could ask your delegation? Have a calm, on-policy answer ready.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Make a one-page cheat sheet for committee</span>
+          <span class="check-label-sub">Key facts, key allies, key talking points, key resolutions. Don&rsquo;t bring your whole binder to the floor &mdash; bring this.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Conference-day kit ready</span>
+          <span class="check-label-sub">Placard, name plate, business attire, notepad, pens, water, snacks, cheat sheet. Pack the night before.</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-header priority-low"><span class="week-tag">Bonus</span> If you have extra time, or your country has a tricky position</div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Read one primary source on your country&rsquo;s position</span>
+          <span class="check-label-sub">A foreign-ministry statement, a UN ambassador&rsquo;s recent speech, an op-ed by a senior official. Quoting one in committee makes you sound prepared.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Read one critical perspective on your country</span>
+          <span class="check-label-sub">An NGO report, an academic article, a news investigation. You don&rsquo;t have to agree &mdash; you have to know what others might throw at you.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Skim the most relevant past UN resolution end-to-end</span>
+          <span class="check-label-sub">Pick the one most relevant to your topic. Notice the structure, the language, and what was actually agreed.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Draft a second &ldquo;back-pocket&rdquo; speech</span>
+          <span class="check-label-sub">Useful for moderated caucuses on a specific sub-topic, or if your opening doesn&rsquo;t land the way you hoped.</span>
+        </label>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <label>
+          <span class="check-label-main">Map the room &mdash; who chairs blocs, who tends to mediate</span>
+          <span class="check-label-sub">In every committee there are 2&ndash;3 students who pull the room. Know who they are early so you can work with them or push back smartly.</span>
+        </label>
+      </div>
+    </div>
+
+    <h3 class="section-title">Resolution Writing Quick Reference</h3>
+    <div class="topic-block">
+      <h4>Three parts of a resolution</h4>
+      <ul>
+        <li><strong>Header:</strong> Committee, Topic, Sponsors, Signatories.</li>
+        <li><strong>Preamble:</strong> Italicised clause openers, end in commas. Sets the scene, references past action.</li>
+        <li><strong>Operatives:</strong> Underlined or italicised openers, numbered, end in semicolons (final clause ends in a full stop). State what the UN will <em>do</em>.</li>
+      </ul>
+      <h4>SMART operatives</h4>
+      <p><strong>S</strong>pecific (who does what), <strong>M</strong>easurable (how do we know it worked), <strong>A</strong>chievable (within committee authority), <strong>R</strong>elevant (addresses the topic), <strong>T</strong>ime-bound (deadlines or review periods).</p>
+      <h4>Watch your committee&rsquo;s authority</h4>
+      <p>The General Assembly can <em>recommend, encourage, request</em>. It cannot <em>demand, mandate</em>, or <em>condemn</em> &mdash; those words are reserved for the Security Council. Using SC language in the GA is a procedural error and chairs will notice.</p>
+      <h4>Three formatting traps that cost points</h4>
+      <ul>
+        <li>Repeating the same clause opener &mdash; use &ldquo;Further&rdquo; or &ldquo;Strongly&rdquo; to vary.</li>
+        <li>Forgetting to spell out acronyms on first use: <em>World Health Organization (WHO)</em>.</li>
+        <li>Wrong punctuation: preamble clauses end in commas, operatives end in semicolons (final clause: full stop).</li>
+      </ul>
+    </div>
+
+    <h3 class="section-title">Public Speaking Reminders</h3>
+    <div class="topic-block">
+      <h4>Hook &mdash; Point &mdash; Call to Action</h4>
+      <ul>
+        <li><strong>Hook:</strong> Question, quote, statistic, or short story. Grab attention in the first sentence.</li>
+        <li><strong>Point:</strong> State your country&rsquo;s position clearly. Give 2&ndash;3 reasons.</li>
+        <li><strong>Call to Action:</strong> Propose a specific solution. End strong.</li>
+      </ul>
+      <h4>Speakers list vs. moderated caucus</h4>
+      <p>The <strong>speakers list</strong> is general &mdash; about the topic as a whole, 1&ndash;2 minutes per speech. A <strong>moderated caucus</strong> is narrow &mdash; about a specific aspect of the topic, usually 30&ndash;60 seconds per speech. In a moderated caucus you can directly respond to other delegates; on the speakers list you make standalone arguments.</p>
+      <h4>Decorum</h4>
+      <p>Speak in third person about yourself: &ldquo;The delegate of France believes&hellip;&rdquo; not &ldquo;I think&hellip;&rdquo;. Refer to other delegates by country, not name. Stay diplomatic even when you disagree strongly.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>Built for delegate preparation &middot; Conference 2026</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;">Difficulty tiers and country positions are starting points for research &mdash; verify with current sources before committee.</p>
+</footer>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ==================== COUNTRY DATA ====================
+  // Format: [name, official, tier_label, tier_class, position_label, position_class, summary, guiding_questions]
+
+  const gaCountries = [
+    ["Canada","Canada","Low stakes","pos-tier1","Strong supporter","pos-supportive","Long-standing ICC champion. Co-founded the Court&rsquo;s Assembly of States Parties, leads on Responsibility to Protect (R2P), and has prosecuted war criminals under universal jurisdiction. Recently active on Russia-Ukraine accountability.","What role did Canada play in negotiating the Rome Statute? How does its &lsquo;feminist foreign policy&rsquo; intersect with war crimes accountability? Where does Canada stand on the ICC arrest warrants for Israeli officials?"],
+    ["China","People&rsquo;s Republic of China","High stakes","pos-tier3","Opposed","pos-opposed","Not a party to the Rome Statute. Strongly emphasises sovereignty and non-interference, and views universal jurisdiction with deep suspicion. Sees the ICC as politicised and Western-led. Supports state-led accountability and rejects external prosecution of officials.","Why has China refused to join the ICC despite being a P5 member? How does China&rsquo;s sovereignty framing apply to Russia-Ukraine, Israel-Palestine, and Myanmar? What alternative accountability mechanisms does China support?"],
+    ["France","Republic of France","Medium stakes","pos-tier2","ICC member, P5","pos-supportive","ICC State Party and major financial contributor. Vocal supporter of accountability, but balances this with strategic interests in former colonies (Sahel operations) and arms-export relationships. Co-led the Veto Initiative on SC transparency.","How does France reconcile ICC support with its arms exports to states accused of war crimes (e.g. Saudi Arabia in Yemen)? What is France&rsquo;s position on the ICC arrest warrant for Putin? How does France approach accountability differently from the US?"],
+    ["India","Republic of India","Medium stakes","pos-tier2","ICC skeptic","pos-skeptical","Not a party to the Rome Statute. Argues the ICC infringes sovereignty and has not adequately addressed concerns about prosecutorial powers, the Security Council&rsquo;s referral role, and the inclusion of nuclear weapons as a war crime. Generally supports accountability through national mechanisms.","What were India&rsquo;s specific objections to the Rome Statute in 1998? How does India balance support for international law with sovereignty concerns? Where does India stand on Russia-Ukraine accountability?"],
+    ["Iran","Islamic Republic of Iran","High stakes","pos-tier3","Hostile to ICC","pos-opposed","Not a party to the Rome Statute. Views Western-led accountability mechanisms as politicised tools. Has itself faced repeated UN human rights criticism. Supports accountability rhetorically when applied to Israel and the US, but rejects investigations of allied states.","How does Iran frame accountability for Israel/Palestine versus accountability for Syria? What is Iran&rsquo;s historical relationship with international human rights mechanisms? How might the delegate avoid appearing simply obstructionist?"],
+    ["Japan","Japan","Low stakes","pos-tier1","Strong supporter","pos-supportive","ICC State Party and the Court&rsquo;s largest financial contributor. Consistent supporter of accountability and rule-based international order. Cautious framing &mdash; emphasises cooperation and institutional support over confrontation.","Why is Japan such a major ICC funder? How does Japan&rsquo;s post-WWII pacifist constitution shape its accountability stance? Does Japan support universal jurisdiction prosecutions?"],
+    ["Mexico","United Mexican States","Low stakes","pos-tier1","Strong supporter","pos-supportive","ICC State Party and active member of the Group of Friends of the ICC. Supports independent investigations, has co-sponsored multiple GA resolutions on accountability, and champions civilian protection in armed conflict.","What role did Mexico play in establishing the ICC? How does Mexico&rsquo;s domestic security situation (cartel violence, journalist killings) affect its credibility? Where does Mexico stand on US non-cooperation with the ICC?"],
+    ["Netherlands","Kingdom of the Netherlands","Low stakes","pos-tier1","Host of the ICC","pos-supportive","Host country of the ICC and ICJ in The Hague. Strongest possible institutional commitment to accountability mechanisms. Leading voice on universal jurisdiction, prosecutes war criminals in Dutch courts, and consistently funds investigative bodies.","Why is being &lsquo;host of the ICC&rsquo; more than symbolic? How does the Netherlands prosecute war crimes in its own courts? What is the &lsquo;Hague Group&rsquo; and what role does it play?"],
+    ["New Zealand","New Zealand","Low stakes","pos-tier1","Strong supporter","pos-supportive","ICC State Party with a strong human-rights identity in foreign policy. Independent voice within the Five Eyes &mdash; supports international accountability mechanisms but often takes a more values-based, less power-political tone than its larger allies. Active on Pacific regional security and consistent voter on accountability resolutions.","How does New Zealand&rsquo;s foreign policy differ from Australia&rsquo;s on accountability questions? What is New Zealand&rsquo;s position on the ICC arrest warrants for Russian and Israeli officials? How does its small-state perspective shape its approach?"],
+    ["Norway","Kingdom of Norway","Low stakes","pos-tier1","Strong supporter","pos-supportive","ICC State Party with deep human-rights identity. Major donor to international justice mechanisms, mediator in peace processes, and leader on R2P. Strong on universal jurisdiction and victim reparations.","How does Norway use development aid as leverage on accountability? What role did Norway play in the Colombia peace process? How does Norway balance peace negotiations with prosecution demands?"],
+    ["Pakistan","Islamic Republic of Pakistan","Medium stakes","pos-tier2","ICC skeptic","pos-skeptical","Not a party to the Rome Statute. Sovereignty-first framing. Has experienced internal armed conflict (counter-terrorism operations) and is wary of external prosecution. Vocal on Kashmir and Palestine but resists ICC mechanisms applied to Muslim-majority states&rsquo; allies.","Why has Pakistan stayed out of the ICC? How does Pakistan frame accountability differently for Kashmir versus other conflicts? What is Pakistan&rsquo;s relationship with universal jurisdiction concepts?"],
+    ["Singapore","Republic of Singapore","Medium stakes","pos-tier2","Pragmatic","pos-neutral","Not a party to the Rome Statute, but supports rules-based international order and has prosecuted war criminals under domestic law in the past. Pragmatic, sovereignty-conscious, often a bridge-builder in the GA. Likely to advocate for state-led mechanisms and pragmatic compromise.","Why has Singapore not joined the ICC despite supporting rule of law? How does Singapore&rsquo;s &lsquo;small-state&rsquo; perspective shape its position? What practical accountability mechanisms might Singapore support?"],
+    ["South Korea","Republic of Korea","Medium stakes","pos-tier2","ICC member","pos-supportive","ICC State Party. Strong rhetorical support for accountability, with practical caution shaped by North Korea&rsquo;s human rights record and China&rsquo;s regional weight. Has supported the Commission of Inquiry on DPRK and is active on accountability for atrocities.","How does South Korea&rsquo;s position on DPRK accountability shape its broader stance? What is the &lsquo;Seoul-Hague&rsquo; cooperation? How does South Korea balance ICC support with not antagonising China?"],
+    ["Sudan","Republic of the Sudan","High stakes","pos-tier3","Affected","pos-affected","Not a party to the Rome Statute. The ICC indicted former president al-Bashir for genocide in Darfur (2009&ndash;2010). Country is currently in active civil war (since April 2023) with credible war-crimes allegations against both the SAF and the RSF. The delegate must defend a contested government&rsquo;s position while the country is itself a war-crimes case study.","What is the current status of the Bashir ICC indictments? What is the role of the SAF and RSF in the current conflict? How does Sudan&rsquo;s history with the ICC shape its current diplomatic position?"],
+    ["Yemen","Republic of Yemen","High stakes","pos-tier3","Affected","pos-affected","Not a party to the Rome Statute. The internationally recognised government controls only part of the country; Houthi-controlled areas are outside its authority. Civil war since 2014 has produced documented violations by all sides &mdash; coalition airstrikes, Houthi shelling, and child recruitment. The delegate represents the recognised government and must navigate this complexity.","Who actually represents Yemen at the UN, and what areas do they control? What investigations have been conducted on Yemen war crimes? How does the delegate distinguish between the recognised government&rsquo;s actions and Houthi actions?"]
+  ];
+
+  const ecosocCountries = [
+    ["China","People&rsquo;s Republic of China","High stakes","pos-tier3","Contested","pos-opposed","World&rsquo;s largest trading nation by volume and second-largest economy. Belt and Road Initiative includes major maritime infrastructure (ports, shipping lanes). Faces accusations of weaponising chokepoints in the South China Sea via island-building and disputed maritime claims. Defends its actions as legitimate sovereignty and development.","How does China defend its South China Sea claims under UNCLOS? What is the &lsquo;debt-trap&rsquo; critique of Chinese port investments and how does China respond? How does China balance commercial shipping interests with its political positions?"],
+    ["France","Republic of France","Medium stakes","pos-tier2","Active naval power","pos-supportive","Major naval power with overseas territories across the Indo-Pacific (New Caledonia, La R&eacute;union, French Polynesia). Participates in Red Sea and Indian Ocean security operations. Strong supporter of UNCLOS and freedom of navigation, but balances this with relationships in Africa and the Middle East.","How does France&rsquo;s overseas territory presence shape its maritime interests? What is France doing in Operation Aspides (Red Sea)? How does France navigate between Western allies and historic ties to weaponisation actors?"],
+    ["India","Republic of India","Medium stakes","pos-tier2","Rising naval power","pos-supportive","Major naval power, leads anti-piracy operations in the Indian Ocean, and has stationed warships in the Red Sea since 2024. Strong supporter of freedom of navigation. However, imports significant Russian oil via &lsquo;shadow fleet&rsquo; vessels &mdash; a delicate position. Champions developing-country interests on shipping costs.","What is India&rsquo;s &lsquo;SAGAR&rsquo; doctrine? How does India reconcile freedom-of-navigation rhetoric with shadow-fleet oil purchases? What is India&rsquo;s position on the Quad maritime cooperation?"],
+    ["Iran","Islamic Republic of Iran","High stakes","pos-tier3","Accused actor","pos-opposed","Central case study of maritime weaponisation. The IRGC has seized commercial vessels in the Strait of Hormuz, supports Houthi attacks on Red Sea shipping, and operates sanctions-evading shadow fleets. Iran defends its actions as legitimate responses to sanctions and Israeli/US aggression. The hardest position to defend in committee.","What is the strategic value of the Strait of Hormuz to Iran? How does Iran characterise its support for the Houthis? What is the legal basis (if any) for Iran&rsquo;s vessel seizures?"],
+    ["Japan","Japan","Low stakes","pos-tier1","Energy-import dependent","pos-supportive","Heavily dependent on energy imports through the Strait of Hormuz and the Strait of Malacca. Strong supporter of freedom of navigation and rules-based maritime order. Active in anti-piracy operations and has dispatched ships to the Gulf of Aden. Predictable, defensible, well-documented position.","Why is Japan one of the most chokepoint-dependent economies in the world? What role does Japan play in Indo-Pacific maritime security? How does Japan balance its position with its constitutional limits on military activity?"],
+    ["Norway","Kingdom of Norway","Low stakes","pos-tier1","Major shipping nation","pos-supportive","One of the world&rsquo;s largest shipping nations by tonnage owned. Home of the Norwegian Shipowners&rsquo; Association and a major flag state. Strong supporter of freedom of navigation, UNCLOS, and Arctic maritime cooperation. Predictable Nordic pro-rules-based-order stance.","How big is Norwegian-owned global shipping? What is Norway&rsquo;s position on Arctic shipping routes opening due to climate change? How does Norway approach sanctions enforcement on maritime trade?"],
+    ["South Korea","Republic of Korea","Medium stakes","pos-tier2","Trade-exposed","pos-supportive","One of the world&rsquo;s most trade-dependent economies, with major shipbuilding and shipping industries. Heavy energy-import dependency through Hormuz and Malacca. Active in counter-piracy operations. Concerned about North Korea&rsquo;s sanctions evasion via shadow fleets and ship-to-ship transfers.","What is South Korea&rsquo;s shipbuilding industry&rsquo;s global market share? How is North Korea evading sanctions at sea, and what is South Korea&rsquo;s response? What is the Cheonghae Unit?"],
+    ["Yemen","Republic of Yemen","High stakes","pos-tier3","Affected","pos-affected","The Bab al-Mandeb Strait, off Yemen&rsquo;s coast, is one of the world&rsquo;s most strategic chokepoints. The internationally recognised government condemns Houthi Red Sea attacks but does not control the relevant Yemeni coastline. The delegate must advocate for the legitimate government&rsquo;s position while the country is the central case of the topic.","Why are the Houthis attacking Red Sea shipping? What does the recognised government control versus what the Houthis control? What is Operation Prosperity Guardian and how does Yemen&rsquo;s government view it?"]
+  ];
+
+  const specialCountries = [
+    ["China","People&rsquo;s Republic of China","High stakes","pos-tier3","Subject of debate","pos-opposed","The country whose policies are under discussion. Frames Xinjiang policies as counter-terrorism and de-radicalisation, citing violent incidents in 2009 and the early 2010s. Describes detention sites as &lsquo;vocational education and training centres&rsquo; that are now closed. Emphasises poverty alleviation, infrastructure investment, and economic development gains. Rejects external interference in &lsquo;internal affairs&rsquo; as a matter of sovereignty. The hardest delegate position in the conference.","What does China&rsquo;s official narrative on Xinjiang contain, and what does it omit? How does China respond to satellite imagery, leaked documents, and survivor testimony? What is the legal basis for China&rsquo;s sovereignty argument? How does the delegate stay diplomatic under sustained questioning?"],
+    ["France","Republic of France","Medium stakes","pos-tier2","Critical","pos-supportive","Signed the 2019, 2020, and 2022 joint letters criticising China&rsquo;s Xinjiang policies. EU-coordinated sanctions on Chinese officials in March 2021. Balances rhetoric with significant economic ties to China. France has its own contested history with Muslim minorities (laïcité debates, Muslim Brotherhood policies) that opponents may try to weaponise.","What sanctions did the EU impose in March 2021, and what was China&rsquo;s response? How does France address potential whataboutism on its own minority policies? What is France&rsquo;s position in the EU-China trade relationship?"],
+    ["India","Republic of India","High stakes","pos-tier3","Notably silent","pos-neutral","Has notably not signed either joint letter on Xinjiang &mdash; a position of strategic ambiguity. Not aligned with the Western critics, but also not signing China&rsquo;s defence. Faces direct whataboutism on Kashmir, Manipur, and citizenship laws. Border tensions with China create complex incentives, but India is also reluctant to set sovereignty-erosion precedents that could be used against it.","Why has India avoided signing either Xinjiang letter? How does the delegate respond to whataboutism on Kashmir? What is the role of the Tibet question in shaping India&rsquo;s thinking?"],
+    ["Japan","Japan","Medium stakes","pos-tier2","Critical","pos-supportive","One of very few Asian states critical of China&rsquo;s Xinjiang policies. Signed the 2020 and 2022 joint letters. Concerned about regional human rights precedents, but cautious in framing because of deep economic ties to China. Faces some whataboutism on its historical treatment of Ainu and Ryukyu peoples, and Korean &lsquo;comfort women&rsquo; legacies.","Why is Japan a rare Asian critic of China? How does Japan respond to whataboutism on Ainu and historical issues? How does Japan balance Xinjiang criticism with the Japan-China economic relationship?"],
+    ["South Korea","Republic of Korea","Medium stakes","pos-tier2","Cautious","pos-neutral","Generally aligned with Western concerns but extremely cautious in public framing because of deep economic dependence on China and the need for Chinese cooperation on North Korea. Has not signed the strongly critical letters but supports human-rights mechanisms generally. The position is &lsquo;concerned but careful&rsquo; &mdash; requires diplomatic finesse.","Why has South Korea been more cautious than Japan? How does the North Korea factor shape South Korean diplomacy on China? What is THAAD and how does it affect Korea-China relations on rights issues?"]
+  ];
+
+  function renderCountries(data, gridId, headerClass) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    data.forEach(c => {
+      const [name, official, tierLabel, tierClass, posLabel, posClass, summary, questions] = c;
+      const card = document.createElement('div');
+      card.className = 'country-card';
+      card.onclick = function() { this.classList.toggle('open'); };
+      card.innerHTML = `
+        <div class="country-card-header ${headerClass}">
+          <span>${name}</span>
+          <span class="toggle-icon">&#9660;</span>
+        </div>
+        <div class="country-card-body">
+          <span class="official-name">${official}</span>
+          <span class="position-label ${tierClass}">${tierLabel}</span>
+          <span class="position-label ${posClass}">${posLabel}</span>
+          <p class="position-summary">${summary}</p>
+          <div class="guiding-q">
+            <strong>🔍 Start your research here:</strong><br>
+            ${questions}
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  renderCountries(gaCountries, 'gaCountries', 'ga');
+  renderCountries(ecosocCountries, 'ecosocCountries', 'ecosoc');
+  renderCountries(specialCountries, 'specialCountries', 'special');
+
+  // Checklist toggle
+  function toggleCheck(el) {
+    const cb = el.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    el.classList.toggle('checked', cb.checked);
+  }
+</script>
+</body>
+</html>
